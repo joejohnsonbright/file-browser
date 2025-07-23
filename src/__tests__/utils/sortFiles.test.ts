@@ -301,6 +301,11 @@ describe('sortFiles', () => {
       const expectedDescending: ProcessedItem[] = [
         {
           type: ItemType.FOLDER,
+          name: 'Empty Folder',
+          isEmpty: true,
+        },
+        {
+          type: ItemType.FOLDER,
           name: 'Misc',
           isEmpty: false,
         },
@@ -308,22 +313,12 @@ describe('sortFiles', () => {
           type: ItemType.FOLDER,
           name: 'Expenses',
           isEmpty: false,
-        },
-        {
-          type: ItemType.FOLDER,
-          name: 'Empty Folder',
-          isEmpty: true,
         },
       ];
 
       const expectedAscending: ProcessedItem[] = [
         {
           type: ItemType.FOLDER,
-          name: 'Empty Folder',
-          isEmpty: true,
-        },
-        {
-          type: ItemType.FOLDER,
           name: 'Expenses',
           isEmpty: false,
         },
@@ -331,6 +326,11 @@ describe('sortFiles', () => {
           type: ItemType.FOLDER,
           name: 'Misc',
           isEmpty: false,
+        },
+        {
+          type: ItemType.FOLDER,
+          name: 'Empty Folder',
+          isEmpty: true,
         },
       ];
 
