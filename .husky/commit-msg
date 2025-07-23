@@ -1,0 +1,32 @@
+# Validate commit message follows conventional commit format
+commit_regex='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .{1,}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+  echo "❌ Invalid commit message format!"
+  echo ""
+  echo "Commit messages must follow conventional commit format:"
+  echo "  type(scope): description"
+  echo ""
+  echo "Types:"
+  echo "  feat     - New features"
+  echo "  fix      - Bug fixes" 
+  echo "  docs     - Documentation changes"
+  echo "  style    - Code style changes (formatting, etc.)"
+  echo "  refactor - Code refactoring"
+  echo "  test     - Adding or updating tests"
+  echo "  chore    - Maintenance tasks"
+  echo "  perf     - Performance improvements"
+  echo "  ci       - CI/CD changes"
+  echo "  build    - Build system changes"
+  echo "  revert   - Reverting commits"
+  echo ""
+  echo "Examples:"
+  echo "  feat: add user authentication"
+  echo "  fix: resolve login form validation"
+  echo "  test: add unit tests for utils"
+  echo "  feat(auth): add password reset functionality"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Commit message follows conventional format" 
