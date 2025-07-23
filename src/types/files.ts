@@ -25,3 +25,8 @@ export interface FolderItem {
 }
 
 export type ProcessedItem = FileItem | FolderItem;
+
+export enum SortOption {
+  NAME = 'name',
+  DATE = 'date',
+}
