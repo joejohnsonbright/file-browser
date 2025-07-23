@@ -1,5 +1,6 @@
 // FileViewer component - displays a list of files and folders
 import { File } from './File';
+import { Folder } from './Folder';
 
 interface FileItem {
   type: string;
@@ -30,7 +31,12 @@ export function FileViewer({ data = [] }: FileViewerProps) {
           className="p-2 border rounded"
         >
           {item.type === 'folder' ? (
-            <span className="font-medium">{item.name}</span>
+            <Folder
+              name={item.name}
+              files={item.files || []}
+              isExpanded={false}
+              onToggle={() => {}}
+            />
           ) : (
             <File name={item.name} type={item.type} added={item.added} />
           )}
