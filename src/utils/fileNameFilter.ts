@@ -20,11 +20,16 @@ export function fileNameFilter(
 
   const lowerSearchTerm = trimmedSearchTerm.toLowerCase();
 
-  return fileData.filter(item => {
-    if (item.type === ItemType.FOLDER && !includeFolderNames) {
-      return false;
-    }
+  const itemsToSearch = includeFolderNames
+    ? fileData
+    : fileData.filter(item => item.type !== ItemType.FOLDER);
 
-    return item.name.toLowerCase().includes(lowerSearchTerm);
-  });
+  const itemsWithLowerNames = itemsToSearch.map(item => ({
+    item,
+    lowerName: item.name.toLowerCase(),
+  }));
+
+  return itemsWithLowerNames
+    .filter(({ lowerName }) => lowerName.includes(lowerSearchTerm))
+    .map(({ item }) => item);
 }
