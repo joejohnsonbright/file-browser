@@ -1,6 +1,8 @@
 // FileViewer component - displays a list of files and folders
+import { useState } from 'react';
 import { File } from './File';
 import { Folder } from './Folder';
+import { SearchSortBar } from './SearchSortBar';
 
 interface FileItem {
   type: string;
@@ -14,6 +16,10 @@ interface FileViewerProps {
 }
 
 export function FileViewer({ data = [] }: FileViewerProps) {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortMethod, setSortMethod] = useState('name');
+  const [sortDirection, setSortDirection] = useState('asc');
+
   // Helper function to convert name to kebab-case for test IDs
   const nameToTestId = (name: string): string => {
     return name
@@ -22,21 +28,36 @@ export function FileViewer({ data = [] }: FileViewerProps) {
       .replace(/^-+|-+$/g, '');
   };
 
+  const handleSortDirectionChange = () => {
+    setSortDirection(prev => (prev === 'asc' ? 'desc' : 'asc'));
+  };
+
   return (
-    <div data-testid="file-viewer" className="space-y-2">
-      {data.map((item, index) => (
-        <div
-          key={index}
-          data-testid={`item-${nameToTestId(item.name)}`}
-          className="p-2 border rounded"
-        >
-          {item.type === 'folder' ? (
-            <Folder name={item.name} files={item.files || []} />
-          ) : (
-            <File name={item.name} type={item.type} added={item.added} />
-          )}
-        </div>
-      ))}
+    <div data-testid="file-viewer" className="space-y-4">
+      <SearchSortBar
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        sortMethod={sortMethod}
+        onSortMethodChange={setSortMethod}
+        sortDirection={sortDirection}
+        onSortDirectionChange={handleSortDirectionChange}
+      />
+
+      <div className="space-y-2">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            data-testid={`item-${nameToTestId(item.name)}`}
+            className="p-2 border rounded"
+          >
+            {item.type === 'folder' ? (
+              <Folder name={item.name} files={item.files || []} />
+            ) : (
+              <File name={item.name} type={item.type} added={item.added} />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
