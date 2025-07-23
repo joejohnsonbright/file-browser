@@ -9,6 +9,7 @@ interface FileProps {
 export function File({ name, type, added }: FileProps) {
   return (
     <div data-testid="file">
+      <span>{name}</span>
       <p>File placeholder</p>
     </div>
   );

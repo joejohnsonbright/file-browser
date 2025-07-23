@@ -29,7 +29,11 @@ export function FileViewer({ data = [] }: FileViewerProps) {
           data-testid={`item-${nameToTestId(item.name)}`}
           className="p-2 border rounded"
         >
-          <span className="font-medium">{item.name}</span>
+          {item.type === 'folder' ? (
+            <span className="font-medium">{item.name}</span>
+          ) : (
+            <File name={item.name} type={item.type} added={item.added} />
+          )}
         </div>
       ))}
     </div>
