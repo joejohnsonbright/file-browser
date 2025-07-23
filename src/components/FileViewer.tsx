@@ -31,12 +31,7 @@ export function FileViewer({ data = [] }: FileViewerProps) {
           className="p-2 border rounded"
         >
           {item.type === 'folder' ? (
-            <Folder
-              name={item.name}
-              files={item.files || []}
-              isExpanded={false}
-              onToggle={() => {}}
-            />
+            <Folder name={item.name} files={item.files || []} />
           ) : (
             <File name={item.name} type={item.type} added={item.added} />
           )}

@@ -1,3 +1,4 @@
+// Placeholder Folder component
 interface FileItem {
   type: string;
   name: string;
@@ -7,12 +8,10 @@ interface FileItem {
 interface FolderProps {
   name: string;
   files: FileItem[];
-  isExpanded: boolean;
-  onToggle: () => void;
 }
 
 // eslint-disable-next-line no-unused-vars
-export function Folder({ name, files, isExpanded, onToggle }: FolderProps) {
+export function Folder({ name, files }: FolderProps) {
   return (
     <div data-testid="folder">
       <span>{name}</span>
