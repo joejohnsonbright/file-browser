@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FileViewer } from './components/FileViewer';
 
 export function App() {
   const [data, setData] = useState([]);
@@ -68,6 +69,10 @@ export function App() {
           <p className="text-lg text-gray-600 mt-4">
             Showing {data.length} files
           </p>
+        </div>
+
+        <div className="mt-8">
+          <FileViewer data={data} />
         </div>
       </div>
     </div>
