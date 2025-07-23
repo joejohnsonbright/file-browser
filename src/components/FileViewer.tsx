@@ -1,4 +1,6 @@
 // FileViewer component - displays a list of files and folders
+import { File } from './File';
+
 interface FileItem {
   type: string;
   name: string;
